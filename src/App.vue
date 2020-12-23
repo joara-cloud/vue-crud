@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <app-header></app-header>
+    <AppHeader></AppHeader>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -14,7 +14,7 @@ export default {
     AppHeader
   },
   created() { 
-    console.log('sdjfisdjof'); 
+    // console.log('sdjfisdjof'); 
   } 
 };
 </script>
