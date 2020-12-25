@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<h2 class="text-center">회원가입 페이지</h2>
 		<SignupForm></SignupForm>
 	</div>
 </template>

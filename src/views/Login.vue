@@ -1,6 +1,6 @@
 <template>
 	<div id="content">
-		<!-- <h2>로그인 페이지</h2> -->
+		<h2 class="text-center">로그인 페이지</h2>
 		<LoginForm></LoginForm>
 	</div>
 </template>

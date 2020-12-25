@@ -3,17 +3,36 @@
 		 <h1 class="logo">
       <router-link to="/">
         TIL
+        <span v-if="isUserLogin">by {{this.$store.state.username}}</span>
       </router-link>
     </h1>
 		<ul class="navigations">
-			<li><router-link to="/signup">회원가입</router-link></li>
-			<li><router-link to="/login">로그인</router-link></li>
+      <template v-if="isUserLogin">
+        <li><span class="username">{{this.$store.state.username}}</span></li>
+        <li><a href="" @click.prevent="logoutUser">로그아웃</a></li>
+      </template>
+      <template v-else>
+        <li><router-link to="/login">로그인</router-link></li>
+        <li><router-link to="/signup">회원가입</router-link></li>
+      </template>
 		</ul>
 	</header>
 </template>
 
 <script>
-export default {}
+export default {
+  computed: {
+    isUserLogin() {
+      return this.$store.getters.isLogin;
+    }
+  },
+  methods: {
+    logoutUser() {
+      this.$store.commit('clearUsername');
+      this.$router.push('/login');
+    }
+  }
+}
 </script>
 
 <style scoped>
@@ -31,11 +50,12 @@ a {
   font-size: 18px;
 }
 .logo {
-  font-size: 30px;
-  font-weight: 900;
-  color: white;
+
 }
-.logo a {display:block;}
+.logo a {display:block;  font-size: 30px;
+  font-weight: 900;
+  color: white;}
+.logo span {font-size:16px;font-weight:500}
 .navigations li {display:inline-block;}
 .navigations a {
   margin-left: 10px;
@@ -49,4 +69,5 @@ a.router-link-exact-active {
   color: white;
   font-weight: bold;
 }
+.username {color:#fff}
 </style>
