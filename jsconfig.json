@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".", // 이렇게 하기 위해선 사용하는 프로젝트가 루트폴더여야 한다. 
+    "paths": {
+      "~/*": [
+        "./*"
+      ],
+      "@/*": [
+        "./src/*"
+      ],
+    }
+  },
+  "exclude": [ // 위 compilerOptions 옵션에 해당하지 않을 (제외시킬) 디렉토리
+    "node_modules",
+    "dist"
+  ]
+}
