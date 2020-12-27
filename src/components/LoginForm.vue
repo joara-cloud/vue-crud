@@ -16,7 +16,6 @@
 </template>
 
 <script>
-import {loginUser} from '../api';
 import {validateEmail} from '../utils/validation.js';
 
 export default {
@@ -41,13 +40,10 @@ export default {
 				const userData = {
 					username: this.username,
 					password: this.password
-				}
-				const {data} = await loginUser(userData);
-				this.$store.commit('setToken', data.token);
-				this.$store.commit('setUsername', data.user.username);
+				}				
+				await this.$store.dispatch('LOGIN', userData); // await 꼭 붙여주기!! 비동기처리 끝나고 router.push로 main을 진입해야하기 때문에!
 				this.$router.push('/main');
-				console.log(data.token);
-				// this.logMessage = `${data.user.username}님 환영합니다.`;
+
 			} catch(error) {
 				// 에러 핸들링할 코드
 				this.logMessage = error.response.data;

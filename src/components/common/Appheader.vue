@@ -1,6 +1,6 @@
 <template>
 	<header id="header">
-		 <h1 class="logo">
+		<h1 class="logo">
       <router-link to="/">
         TIL
         <span v-if="isUserLogin">by {{this.$store.state.username}}</span>
@@ -8,7 +8,6 @@
     </h1>
 		<ul class="navigations">
       <template v-if="isUserLogin">
-        <li><span class="username">{{this.$store.state.username}}</span></li>
         <li><a href="" @click.prevent="logoutUser">로그아웃</a></li>
       </template>
       <template v-else>

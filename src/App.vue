@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import AppHeader from './components/common/Appheader.vue';
+import AppHeader from './components/common/AppHeader.vue';
 export default {
   components: {
     AppHeader,
@@ -16,7 +16,7 @@ export default {
 };
 </script>
 
-<style>
+<style> 
 @import './css/reset.css';
 @import './css/common.css';
 </style>
