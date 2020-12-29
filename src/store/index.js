@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import {saveAuthToCookie, saveUserToCookie, getAuthFromCookie, getUserFromCookie} from '../utils/cookies.js';
-import {loginUser} from '../api';
+import {loginUser} from '../api/auth.js';
 
 Vue.use(Vuex);
 
@@ -29,6 +29,7 @@ export default new Vuex.Store({
 	actions: {
 		async LOGIN({commit}, userData) {
 			const {data} = await loginUser(userData);
+			console.log(data);
 			commit('setToken', data.token);
 			commit('setUsername', data.user.username);
 			saveAuthToCookie(data.token);

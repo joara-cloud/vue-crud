@@ -9,7 +9,8 @@
 				</div>
 				<div>
 					<label for="contents">contents: </label>
-					<textarea name="" id="contents" cols="30" rows="5" v-model="contents"></textarea>
+					<textarea name="" id="contents" cols="30" rows="5" v-model="contents" v-bind:class="{b_red: isContentsValid}"></textarea>
+					<p class="validation-text warning" v-if="isContentsValid">Contents length must be less then 200.</p>
 				</div>
 				<button type="submit" class="btn">Create</button>
 			</form>
@@ -19,7 +20,7 @@
 </template>
 
 <script>
-import {createPosts} from '../../api'
+import {createPosts} from '../../api/auth.js'
 
 export default {
 	data() {
@@ -27,6 +28,11 @@ export default {
 			title: '',
 			contents: '',
 			logMessage: ''
+		}
+	},
+	computed: {
+		isContentsValid() {
+			return this.contents.length > 250;
 		}
 	},
 	methods: {
@@ -41,7 +47,6 @@ export default {
 			} catch(error) {
 				this.logMessage = error.response.data.message;
 			}
-
 		}
 	}
 }
@@ -50,4 +55,5 @@ export default {
 <style scoped>
 .form-wrapper .form {width:100%}
 .form-wrapper .form .btn {color:#fff}
+
 </style>
