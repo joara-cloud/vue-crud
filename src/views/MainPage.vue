@@ -14,7 +14,7 @@
 <script>
 import PostListItem from '../components/posts/PostListItem.vue';
 import LoadingSpinner from '../components/common/LoadingSpinner.vue';
-import {fetchPosts} from '../api';
+import {fetchPosts} from '../api/posts.js';
 
 export default {
 	components: {

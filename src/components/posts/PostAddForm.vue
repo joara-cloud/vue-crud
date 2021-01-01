@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import {createPosts} from '../../api/auth.js'
+import {createPosts} from '../../api/posts.js'
 
 export default {
 	data() {
