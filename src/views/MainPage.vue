@@ -4,7 +4,7 @@
 			<h2 class="page-header">Today I Learned</h2>
 			<LoadingSpinner v-if="isLoading"></LoadingSpinner>
 			<ul v-else>
-				<PostListItem v-for="postItem in postItems" :key="postItem._id" :postItem="postItem"></PostListItem>
+				<PostListItem v-for="postItem in postItems" :key="postItem._id" :postItem="postItem" @refresh="fetchData"></PostListItem>
 			</ul>
 		</div>
 		<router-link to="/add" class="create-button"><i class="ion-md-add"></i></router-link>

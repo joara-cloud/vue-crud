@@ -20,7 +20,7 @@ function getUserFromCookie() {
   );
 }
 
-function deleteCookie(value) {
+function deleteCookie(value) { // 예를 들어, til_auth의 값을 지우고 싶으면 deleteCookie(til_auth)로 들어오게 인자를 받으면된다.
   document.cookie = `${value}=; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
 }
 

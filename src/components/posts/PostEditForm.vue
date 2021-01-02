@@ -1,6 +1,6 @@
 <template>
 	<div class="contents">
-		<h2 class="page-header">Create Post</h2>
+		<h2 class="page-header">Edit Post</h2>
 		<div class="form-wrapper">
 			<form action="" class="form" @submit.prevent="submitForm">
 				<div>
@@ -12,7 +12,7 @@
 					<textarea name="" id="contents" cols="30" rows="5" v-model="contents" v-bind:class="{b_red: isContentsValid}"></textarea>
 					<p class="validation-text warning" v-if="isContentsValid">Contents length must be less then 200.</p>
 				</div>
-				<button type="submit" class="btn">Create</button>
+				<button type="submit" class="btn">Edit</button>
 			</form>
 			<p class="log">{{logMessage}}</p>
 		</div>
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import {createPosts} from '../../api/posts.js'
+import {fetchPost, editPosts} from '../../api/posts.js'
 
 export default {
 	data() {
@@ -37,16 +37,24 @@ export default {
 	},
 	methods: {
 		async submitForm() {
+			const id = this.$route.params.id;
 			try {
-				await createPosts({
+				await editPosts(id, {
 					title: this.title,
 					contents: this.contents
 				});
-				this.$router.push('/main');
-			} catch(error) {
-				this.logMessage = error.response.data.message;
+				this.$router.push('/');
+			}catch(error) {
+				this.logMessage = error;
 			}
+
 		}
+	},
+	async created() {
+		const id = this.$route.params.id;
+		const {data} = await fetchPost(id);
+		this.title = data.title;
+		this.contents = data.contents;
 	}
 }
 </script>
